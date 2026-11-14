@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="referrer" content="no-referrer">
+<title>像素小工坊 · 主页模板填写器</title>
+<style>
+:root{--ink:#493065;--paper:#fffdf9;--page:#ece5f6;--soft:#f5f0fa;--accent:#cdbbe3;--note:#f8e7ad;--line:#c9bcd7;--muted:#74627d;--error:#9d283d;--success:#246346;font-family:"Microsoft YaHei","PingFang SC",system-ui,sans-serif;color:var(--ink);background:var(--page);font-size:15px;line-height:1.65}
+*{box-sizing:border-box}body{margin:0}button,input,textarea,select{font:inherit}button,a,input,textarea,select{touch-action:manipulation}a{color:var(--ink);text-underline-offset:4px}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.55}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--ink);outline-offset:4px}::selection{background:var(--note)}
+.app{max-width:1432px;margin:auto;padding:32px 40px 48px}.masthead{display:flex;gap:20px;align-items:center;margin:0 0 30px}.mark{width:53px;height:53px;background:var(--ink);display:grid;place-items:center;flex:none;box-shadow:5px 5px 0 var(--accent)}.mark span{width:27px;height:21px;background:var(--note);position:relative}.mark span:before{content:"";position:absolute;left:0;top:-6px;width:12px;height:6px;background:var(--note)}.masthead h1{font-size:26px;line-height:1.3;margin:0 0 5px;font-weight:750;letter-spacing:.02em}.masthead p{margin:0;color:var(--muted);font-size:13px}.local-label{margin-left:auto;font-size:12px;border:1px solid var(--line);padding:5px 10px;white-space:nowrap;background:var(--paper)}
+.workspace{display:grid;grid-template-columns:minmax(290px,355px) minmax(0,1fr);gap:30px;align-items:start}.editor{background:var(--paper);border:2px solid var(--ink);box-shadow:6px 6px 0 var(--accent);min-width:0}.window-title{display:flex;align-items:center;justify-content:space-between;padding:11px 18px;background:var(--accent);border-bottom:2px solid var(--ink);font-size:13px;font-weight:700}.window-dots{display:flex;gap:5px}.window-dots i{display:block;width:6px;height:6px;background:var(--ink)}.editor-body{padding:21px}.section-name{margin:0 0 14px;font-size:18px}.hint{font-size:12px;color:var(--muted);margin:7px 0 0}.field{margin-bottom:15px}.field label{display:block;font-size:13px;font-weight:650;margin-bottom:5px}.field input,.field textarea,.field select{display:block;width:100%;color:var(--ink);border:1px solid var(--line);background:white;border-radius:3px;padding:9px 10px;min-height:42px}.field textarea{resize:vertical;min-height:88px;line-height:1.6}.field input[aria-invalid="true"],.field textarea[aria-invalid="true"],.field select[aria-invalid="true"]{border-color:var(--error)}.field input::placeholder,.field textarea::placeholder{color:#948b9b}.field-error{color:var(--error);font-size:12px;margin:4px 0 0;min-height:0}.field-error:empty{display:none}.group-error{color:var(--error);font-size:12px;margin:8px 0 0}.group-error:empty{display:none}
+details{border-top:1px solid var(--line);padding-top:15px;margin-top:21px}summary{font-size:15px;font-weight:650;cursor:pointer;list-style-position:inside;user-select:none}summary small{font-size:12px;font-weight:400;color:var(--muted);margin-left:7px}.detail-body{padding-top:14px}fieldset{padding:12px;border:1px solid var(--line);margin:0 0 17px;min-width:0}legend{padding:0 6px;font-size:12px;color:var(--muted)}fieldset .field:last-of-type{margin-bottom:0}.tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:21px}.quiet-button,.file-button{font-size:12px;line-height:1.5;border:1px solid var(--line);border-radius:3px;background:var(--soft);color:var(--ink);padding:8px 10px;text-align:center;cursor:pointer}.quiet-button:hover,.file-button:hover{background:var(--page)}.file-button{position:relative}.file-button input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer}.file-button:focus-within{outline:3px solid var(--ink);outline-offset:3px}.editor-footer{padding-top:13px;font-size:11px;color:var(--muted);margin:0}.preview-column{min-width:0;position:sticky;top:20px}.preview-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:12px}.preview-top h2{font-size:18px;margin:0}.preview-top span{font-size:12px;color:var(--muted)}.readme{background:#fff;color:#262330;border:1px solid #d7d0dd;padding:28px 30px;min-width:0;box-shadow:0 3px 0 #d7cde2}.readme canvas{display:block;width:100%;height:auto;aspect-ratio:12/5;margin:0 0 24px;background:var(--page)}.readme h2{font-size:21px;color:#352b40;margin:0 0 14px;line-height:1.5}.readme h3{font-size:18px;color:#352b40;border-bottom:1px solid #ebe6ef;padding-bottom:8px;margin:25px 0 12px}.readme h4{font-size:15px;line-height:1.6;margin:17px 0 5px}.readme p{font-size:14px;margin:7px 0 13px;white-space:pre-wrap;overflow-wrap:anywhere}.readme a{color:#67438b;overflow-wrap:anywhere}.readme ul{padding-left:21px;font-size:14px;overflow-wrap:anywhere}.readme li+li{margin-top:5px}.readme h2,.readme h4{overflow-wrap:anywhere}.sample-note{color:var(--muted);font-size:12px;margin:12px 0 20px}.exports{background:var(--note);border:1px solid #d6c58e;padding:18px 20px;position:relative}.exports h2{font-size:16px;margin:0 0 4px}.exports p{font-size:12px;color:var(--ink);margin:0 0 14px}.download-buttons{display:flex;gap:10px;flex-wrap:wrap}.download{padding:10px 16px;border:2px solid var(--ink);color:var(--paper);background:var(--ink);font-size:13px;font-weight:650;box-shadow:3px 3px 0 #d2bd86}.download.secondary{background:var(--paper);color:var(--ink)}.download:hover:not(:disabled){filter:brightness(1.12)}.notice{margin-top:14px;font-size:12px;line-height:1.6;color:var(--success);overflow-wrap:anywhere}.notice.error{color:var(--error)}.notice:empty{display:none}.validation-summary{color:var(--error);font-size:12px;margin:10px 0 0}.validation-summary:empty{display:none}.page-footer{font-size:12px;color:var(--muted);margin:28px 0 0;text-align:right}.page-footer code{font-size:12px}.noscript{padding:30px;background:var(--note);font-size:16px}
+@media(min-width:1550px){.app{padding-top:42px}.workspace{gap:40px}}
+@media(max-width:980px){.app{padding:24px}.workspace{grid-template-columns:minmax(260px,310px) minmax(0,1fr);gap:20px}.readme{padding:18px}.editor-body{padding:17px}.preview-column{position:static}.download-buttons{flex-direction:column}.download{width:100%}.local-label{display:none}}
+@media(max-width:720px){.app{padding:22px 16px 32px}.masthead{margin-bottom:24px}.masthead h1{font-size:23px}.masthead p{font-size:12px}.mark{width:43px;height:43px}.workspace{grid-template-columns:1fr;gap:30px}.editor{box-shadow:4px 4px 0 var(--accent)}.editor-body{padding:20px}.preview-column{position:static}.readme{padding:17px}.preview-top{align-items:baseline}.preview-top span{font-size:11px}.download-buttons{flex-direction:row}.download{flex:1;white-space:nowrap}.readme h2{font-size:19px}.page-footer{text-align:left}.exports{padding:16px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<noscript><p class="noscript">填写器需要浏览器启用 JavaScript。也可以直接编辑模板中的 profile/README.md，并替换 assets/banner.png。</p></noscript>
+<main class="app">
+  <header class="masthead">
+    <div class="mark" aria-hidden="true"><span></span></div>
+    <div><h1>像素小工坊</h1><p>把这张小工作台，换成你的故事。</p></div>
+    <span class="local-label">本地填写 · 无需登录</span>
+  </header>
+  <div class="workspace">
+    <section class="editor" aria-label="填写主页信息">
+      <div class="window-title"><span>你的主页档案</span><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span></div>
+      <form id="profile-form" class="editor-body" novalidate>
+        <h2 class="section-name">先介绍一下自己</h2>
+        <div class="field"><label for="username">GitHub 用户名</label><input id="username" name="username" maxlength="39" autocomplete="off" spellcheck="false" placeholder="your-handle" aria-describedby="error-username"><p id="error-username" class="field-error"></p></div>
+        <div class="field"><label for="displayName">显示昵称</label><input id="displayName" name="displayName" maxlength="32" placeholder="你的昵称" aria-describedby="error-displayName"><p id="error-displayName" class="field-error"></p></div>
+        <div class="field"><label for="tagline">写在便签上的一句话</label><input id="tagline" name="tagline" maxlength="48" placeholder="把喜欢的事，慢慢做成作品。" aria-describedby="error-tagline"><p id="error-tagline" class="field-error"></p></div>
+        <div class="field"><label for="intro">一小段自我介绍</label><textarea id="intro" name="intro" maxlength="500" rows="3" placeholder="你在做什么，喜欢什么，希望留下什么。" aria-describedby="error-intro"></textarea><p id="error-intro" class="field-error"></p></div>
+        <div class="field"><label for="theme">工作台配色</label><select id="theme" name="theme" aria-describedby="error-theme"><option value="purple">紫色便签</option><option value="mint">薄荷工作台</option><option value="peach">蜜桃小桌面</option></select><p id="error-theme" class="field-error"></p></div>
+        <details><summary>放上你的作品<small>最多 3 个</small></summary><div id="project-fields" class="detail-body"></div></details>
+        <details><summary>最近在做什么<small>最多 3 条</small></summary><div id="note-fields" class="detail-body"></div></details>
+        <div class="tools">
+          <button type="button" id="save-config" class="quiet-button">保存填写内容</button>
+          <label class="file-button">导入填写内容<input id="import-config" type="file" accept=".json,application/json" aria-label="导入 JSON 填写内容"></label>
+          <button type="button" id="reset" class="quiet-button">恢复示例</button>
+        </div>
+        <p class="editor-footer">内容只在这个页面里处理。关闭前可保存一份 JSON，下次继续填写。</p>
+        <div id="form-notice" class="notice" role="status" aria-live="polite"></div>
+      </form>
+    </section>
+    <section class="preview-column" aria-label="预览和下载">
+      <div class="preview-top"><h2>你的主页预览</h2><span>正文 + 一张小工作台</span></div>
+      <article class="readme" aria-label="生成的主页内容">
+        <canvas id="banner" width="1800" height="750" role="img" aria-label="个人主页像素横幅"></canvas>
+        <div id="preview"></div>
+      </article>
+      <p class="sample-note">这是模板预览；GitHub 会按自己的字体和页面宽度显示正文。</p>
+      <section class="exports" aria-label="下载主页文件">
+        <h2>带走你的工作台</h2>
+        <p>将 README.md 放进你的公开同名仓库根目录；将 banner.png 放进 assets 文件夹。</p>
+        <div class="download-buttons"><button type="button" class="download" id="download-readme">下载正文 README</button><button type="button" class="download secondary" id="download-banner">下载横幅 PNG</button></div>
+        <div id="validation-summary" class="validation-summary" role="status" aria-live="polite"></div>
+        <div id="download-notice" class="notice" role="status" aria-live="polite"></div>
+      </section>
+    </section>
+  </div>
+  <footer class="page-footer">无需安装依赖 · 不会自动上传到 GitHub · 横幅尺寸 1800 × 750</footer>
+</main>
+<script>
+'use strict';
+(() => {
+  const defaults = {
+    username: 'your-handle',
+    displayName: '你的昵称',
+    tagline: '灵感随手记，作品慢慢做。',
+    intro: '这里是你的简介。可以写下你在学习什么、正在制作什么，以及希望与谁交流。',
+    projects: [
+      {name: '示例项目一', description: '用一句话说明这个项目能帮谁解决什么问题。', url: 'https://github.com/your-handle/example-project-one'},
+      {name: '示例项目二', description: '写下另一个想展示的作品，也可以删除这一项。', url: 'https://github.com/your-handle/example-project-two'}
+    ],
+    notes: ['正在学习：填入你最近研究的主题。', '正在制作：填入你想完成的小作品。', '欢迎交流：填入你感兴趣的话题。'],
+    theme: 'purple'
+  };
+  const palettes = {
+    purple: {ink:'#493065',page:'#ece5f6',accent:'#cdbbe3',note:'#f8e7ad',soft:'#f5f0fa',line:'#c9bcd7',muted:'#74627d',screen:'#edf4db',folder:'#97cdb8',shadow:'#bca9d0'},
+    mint: {ink:'#284f49',page:'#e3eee7',accent:'#b6d4c4',note:'#f5e7b8',soft:'#f0f6f1',line:'#b3cec2',muted:'#597468',screen:'#f9f2d9',folder:'#b5abd4',shadow:'#a4c1b0'},
+    peach: {ink:'#68443e',page:'#f6e6df',accent:'#e4bfb2',note:'#f9ebbe',soft:'#fcf3ed',line:'#d9bcb0',muted:'#83685d',screen:'#eef2d9',folder:'#a7c8ba',shadow:'#d5ada0'}
+  };
+  const form = document.getElementById('profile-form');
+  const canvas = document.getElementById('banner');
+  const ctx = canvas.getContext('2d');
+  const preview = document.getElementById('preview');
+  const id = value => document.getElementById(value);
+  const clone = value => JSON.parse(JSON.stringify(value));
+  const node = (tag, text, className) => {
+    const item = document.createElement(tag);
+    if(text !== undefined) item.textContent = text;
+    if(className) item.className = className;
+    return item;
+  };
+  const isObject = value => value !== null && typeof value === 'object' && !Array.isArray(value) && [Object.prototype, null].includes(Object.getPrototypeOf(value));
+  const URL_OK = value => {
+    if(typeof value !== 'string' || !value.trim() || /[\u0000-\u001f\u007f]/u.test(value)) return false;
+    try { const parsed = new URL(value); return ['http:', 'https:'].includes(parsed.protocol) && !!parsed.hostname && !parsed.username && !parsed.password; }
+    catch { return false; }
+  };
+  function validate(config) {
+    const errors = [];
+    const error = (field, message) => errors.push({field, message});
+    if(!isObject(config)) return [{field:'config', message:'填写内容必须是一个 JSON 对象。'}];
+    const allowed = ['username','displayName','tagline','intro','projects','notes','theme'];
+    if(Object.keys(config).some(key => !allowed.includes(key))) error('config', 'JSON 中有不支持的字段，请使用本模板的配置格式。');
+    for(const [field,limit,label] of [['username',39,'用户名'],['displayName',32,'昵称'],['tagline',48,'便签文案'],['intro',500,'自我介绍']]) {
+      if(typeof config[field] !== 'string') error(field, label+'必须是文字。');
+      else if(config[field].length > limit) error(field, label+'最多 '+limit+' 个字符。');
+      if(field !== 'intro' && typeof config[field] === 'string' && /[\r\n]/.test(config[field])) error(field,label+'请写在一行内。');
+    }
+    if(typeof config.username === 'string' && !/^[a-z\d]+(?:-[a-z\d]+)*$/i.test(config.username)) error('username','使用英文字母、数字或单个连接号，首尾不能是连接号。');
+    if(typeof config.displayName === 'string' && !config.displayName.trim()) error('displayName','请填写显示昵称。');
+    if(typeof config.tagline === 'string' && !config.tagline.trim()) error('tagline','请写一句便签文案。');
+    if(typeof config.theme !== 'string' || !Object.hasOwn(palettes,config.theme)) error('theme','请选择紫色、薄荷或蜜桃配色。');
+    if(!Array.isArray(config.projects) || config.projects.length > 3) error('projects','项目必须是数组，最多 3 个。');
+    else config.projects.forEach((project,index) => {
+      const key = 'projects.'+index;
+      if(!isObject(project)) {error(key,'每个项目都需要名称、描述和链接。');return;}
+      if(Object.keys(project).some(field => !['name','description','url'].includes(field))) error(key,'项目中有不支持的字段。');
+      for(const [field,limit,label] of [['name',60,'项目名称'],['description',180,'项目描述'],['url',2048,'项目链接']]) {
+        if(typeof project[field] !== 'string') error(key+'.'+field,label+'必须是文字。');
+        else if(project[field].length > limit) error(key+'.'+field,label+'最多 '+limit+' 个字符。');
+      }
+      if(typeof project.name === 'string' && !project.name.trim()) error(key+'.name','请填写项目名称，或清空这一组。');
+      if(typeof project.name === 'string' && /[\r\n]/.test(project.name)) error(key+'.name','项目名称请写在一行内。');
+      if(typeof project.url === 'string' && !URL_OK(project.url)) error(key+'.url','请填写完整的 http:// 或 https:// 链接，不能包含登录凭据。');
+    });
+    if(!Array.isArray(config.notes) || config.notes.length > 3) error('notes','近况必须是数组，最多 3 条。');
+    else config.notes.forEach((note,index) => {
+      if(typeof note !== 'string' || !note.trim() || note.length > 100) error('notes.'+index,'每条近况需要 1–100 个字符。');
+      else if(/[\r\n]/.test(note)) error('notes.'+index,'每条近况请写在一行内。');
+    });
+    return errors;
+  }
+  function addField(parent, fieldId, label, max, placeholder, multiline=false) {
+    const field = node('div', undefined, 'field');
+    const fieldLabel = node('label', label); fieldLabel.htmlFor = fieldId;
+    const input = node(multiline ? 'textarea' : 'input');
+    input.id = fieldId; input.maxLength = max; input.placeholder = placeholder || '';
+    if(multiline) input.rows = 2;
+    input.setAttribute('aria-describedby','error-'+fieldId);
+    const error = node('p','', 'field-error'); error.id = 'error-'+fieldId;
+    field.append(fieldLabel,input,error); parent.append(field);
+  }
+  for(let index=0;index<3;index++) {
+    const group = node('fieldset'); group.append(node('legend','作品 '+(index+1)+' · 可留空'));
+    addField(group,'project-'+index+'-name','项目名称',60,'例如：我的小工具');
+    addField(group,'project-'+index+'-description','一句话介绍',180,'它是做什么的？',true);
+    addField(group,'project-'+index+'-url','项目链接',2048,'https://github.com/your-handle/project');
+    id('project-fields').append(group);
+    addField(id('note-fields'),'note-'+index,'近况 '+(index+1),100,'留空则不显示');
+  }
+  function getConfig() {
+    const config = {};
+    for(const key of ['username','displayName','tagline','intro','theme']) config[key] = id(key).value.trim();
+    config.projects = [];
+    for(let index=0;index<3;index++) {
+      const project = {};
+      for(const key of ['name','description','url']) project[key] = id('project-'+index+'-'+key).value.trim();
+      if(Object.values(project).some(Boolean)) config.projects.push(project);
+    }
+    config.notes = [0,1,2].map(index => id('note-'+index).value.trim()).filter(Boolean);
+    return config;
+  }
+  function setConfig(config) {
+    for(const key of ['username','displayName','tagline','intro','theme']) id(key).value = config[key];
+    for(let index=0;index<3;index++) {
+      for(const key of ['name','description','url']) id('project-'+index+'-'+key).value = config.projects[index]?.[key] || '';
+      id('note-'+index).value = config.notes[index] || '';
+    }
+  }
+  function wrapped(text, width) {
+    const lines = []; let current = '';
+    for(const char of Array.from(text)) {
+      if(char === '\n') { lines.push(current);current='';continue; }
+      if(current && ctx.measureText(current+char).width > width) {lines.push(current.trimEnd());current=char.trimStart();}
+      else current += char;
+    }
+    if(current || !lines.length) lines.push(current.trimEnd());
+    return lines;
+  }
+  function fitText(text,width,maxLines,startSize,minSize,weight=600,availableHeight=Infinity,lineHeight=1.25) {
+    for(let size=startSize;size>=minSize;size-=2) {
+      ctx.font = weight+' '+size+'px "Microsoft YaHei", "PingFang SC", sans-serif';
+      const lines = wrapped(text,width);
+      if(lines.length <= maxLines && lines.length*size*lineHeight <= availableHeight) return {size,lines};
+    }
+    ctx.font = weight+' '+minSize+'px "Microsoft YaHei", "PingFang SC", sans-serif';
+    const lines = wrapped(text,width).slice(0,maxLines);
+    let last = lines[lines.length-1];
+    while(last && ctx.measureText(last+'…').width > width) last=Array.from(last).slice(0,-1).join('');
+    lines[lines.length-1]=last+'…';
+    return {size:minSize,lines};
+  }
+  function drawBanner(config) {
+    const p = palettes[config.theme] || palettes.purple;
+    ctx.clearRect(0,0,1800,750); ctx.imageSmoothingEnabled=false;
+    const rect=(x,y,w,h,color)=>{ctx.fillStyle=color;ctx.fillRect(x,y,w,h);};
+    rect(0,0,1800,750,p.page);
+    rect(63,64,1688,644,p.shadow);
+    rect(40,40,1696,648,p.ink);
+    rect(52,52,1672,624,'#fffdf9');
+    rect(52,52,1672,88,p.accent); rect(52,140,1672,10,p.ink);
+    ctx.fillStyle=p.ink;ctx.textBaseline='top';
+    ctx.font='600 35px ui-monospace, Consolas, monospace';
+    const handle=config.username || 'your-handle';
+    ctx.fillText('@'+handle,94,74,1320);
+    [1574,1618,1662].forEach(x=>rect(x,88,18,18,p.ink));
+    rect(112,212,1008,408,p.shadow);rect(96,196,1008,408,p.note);
+    rect(96,196,1008,10,'#fff5d8');
+    rect(478,175,220,48,p.accent);rect(490,175,196,9,p.page);
+    rect(478,183,12,32,p.accent);rect(686,183,12,32,p.accent);
+    ctx.fillStyle=p.ink;
+    const name=fitText(config.displayName || '你的昵称',882,2,86,42,700);
+    name.lines.forEach((line,index)=>ctx.fillText(line,150,254+index*name.size*1.22));
+    const tagTop=254+name.lines.length*name.size*1.22+24;
+    const tagline=fitText(config.tagline || '给你的工作台写一句话。',878,2,64,24,500,572-tagTop);
+    tagline.lines.forEach((line,index)=>ctx.fillText(line,152,tagTop+index*tagline.size*1.25));
+    rect(1224,220,382,378,p.shadow);rect(1208,204,382,378,p.ink);
+    rect(1220,216,358,354,p.accent);rect(1220,216,358,16,p.page);
+    rect(1240,246,318,210,p.ink);rect(1252,258,294,186,p.screen);
+    rect(1284,292,120,8,p.shadow);rect(1284,312,76,8,p.shadow);
+    rect(1310,354,58,18,p.ink);rect(1310,368,178,54,p.ink);
+    rect(1320,364,40,14,p.folder);rect(1320,378,158,34,p.folder);
+    rect(1382,334,70,62,p.ink);rect(1392,344,50,40,'#fffdf9');
+    rect(1402,354,30,6,p.shadow);rect(1402,367,23,6,p.shadow);
+    rect(1320,396,158,16,p.folder);
+    rect(1280,500,82,22,p.ink);rect(1310,470,22,82,p.ink);
+    rect(1316,506,10,10,p.shadow);
+    rect(1454,492,36,36,p.ink);rect(1448,486,36,36,p.note);
+    rect(1510,472,36,36,p.ink);rect(1504,466,36,36,p.note);
+    rect(1390,548,26,6,p.shadow);rect(1430,548,26,6,p.shadow);
+    [[1176,624],[1626,178],[1638,608]].forEach(([x,y])=>{rect(x,y,10,30,p.accent);rect(x-10,y+10,30,10,p.accent);});
+    canvas.setAttribute('aria-label',(config.displayName || '你的昵称')+'的像素工作台：'+(config.tagline || ''));
+  }
+  function drawPreview(config) {
+    preview.replaceChildren();
+    preview.append(node('h2','你好，我是 '+(config.displayName || '你的昵称')+'。'));
+    if(config.intro) preview.append(node('p',config.intro));
+    if(config.projects.length) {
+      preview.append(node('h3','正在做的小项目'));
+      config.projects.forEach(project=>{
+        const heading=node('h4');
+        if(project.name && URL_OK(project.url)) {
+          const link=node('a',project.name);link.href=new URL(project.url).href;link.target='_blank';link.rel='noopener noreferrer';heading.append(link);
+        } else heading.textContent=project.name || '尚未填写项目名称';
+        preview.append(heading);
+        if(project.description) preview.append(node('p',project.description));
+      });
+    }
+    if(config.notes.length) {
+      preview.append(node('h3','工作台便签'));
+      const list=node('ul');config.notes.forEach(note=>list.append(node('li',note)));preview.append(list);
+    }
+  }
+  function inputId(field) {
+    if(field.startsWith('projects.')) {
+      const [,index,key]=field.split('.');
+      const filled=[0,1,2].filter(i=>['name','description','url'].some(k=>id('project-'+i+'-'+k).value.trim()));
+      return 'project-'+filled[Number(index)]+'-'+(key || 'name');
+    }
+    if(field.startsWith('notes.')) {
+      const filled=[0,1,2].filter(i=>id('note-'+i).value.trim());
+      return 'note-'+filled[Number(field.split('.')[1])];
+    }
+    return field;
+  }
+  function render() {
+    const config=getConfig();
+    const palette=palettes[config.theme] || palettes.purple;
+    for(const key of ['ink','page','accent','note','soft','line','muted']) document.documentElement.style.setProperty('--'+key,palette[key]);
+    drawBanner(config);drawPreview(config);
+    document.querySelectorAll('.field-error').forEach(element=>element.textContent='');
+    form.querySelectorAll('[aria-invalid]').forEach(element=>element.removeAttribute('aria-invalid'));
+    const errors=validate(config);
+    errors.forEach(error=>{
+      const field=inputId(error.field); const element=id(field); const message=id('error-'+field);
+      if(element) element.setAttribute('aria-invalid','true');
+      if(message && !message.textContent) message.textContent=error.message;
+    });
+    for(const buttonId of ['download-readme','download-banner','save-config']) id(buttonId).disabled=errors.length>0;
+    id('validation-summary').textContent=errors.length ? '还有 '+errors.length+' 处内容需要调整，请检查左侧提示。' : '';
+    return {config,errors};
+  }
+  function escapeMarkdown(text) {
+    return text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/[\\`*_{}\[\]()#+.!|~\-]/g,'\\$&');
+  }
+  function markdown(config=getConfig()) {
+    const errors=validate(config);
+    if(errors.length) throw new Error(errors[0].message);
+    const safe=escapeMarkdown;
+    const multiline=text=>safe(text.replace(/\r\n?/g,'\n')).replace(/\n/g,'  \n');
+    const result=['!['+safe(config.displayName+'的像素小工坊：'+config.tagline)+'](assets/banner.png)','你好，我是 **'+safe(config.displayName)+'**。'];
+    if(config.intro) result.push(multiline(config.intro));
+    if(config.projects.length) {
+      result.push('## 正在做的小项目');
+      config.projects.forEach(project=>{
+        const url=new URL(project.url).href.replace(/[()<>]/g,char=>'%'+char.charCodeAt(0).toString(16).toUpperCase());
+        result.push('### ['+safe(project.name)+']('+url+')');
+        if(project.description) result.push(multiline(project.description));
+      });
+    }
+    if(config.notes.length) result.push('## 工作台便签',config.notes.map(note=>'- '+safe(note)).join('\n'));
+    return result.join('\n\n')+'\n';
+  }
+  function notice(target,message,isError=false) {
+    const element=id(target);element.textContent=message;element.classList.toggle('error',isError);
+  }
+  function download(blob,filename) {
+    const url=URL.createObjectURL(blob);const anchor=node('a');anchor.href=url;anchor.download=filename;
+    document.body.append(anchor);anchor.click();anchor.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);
+  }
+  function ready() {
+    const state=render();
+    if(state.errors.length) {notice('download-notice','请先调整填写内容，再下载。',true);return null;}
+    return state.config;
+  }
+  form.addEventListener('submit',event=>event.preventDefault());
+  form.addEventListener('input',event=>{
+    if(event.target.type==='file') return;
+    notice('download-notice','');notice('form-notice','');render();
+  });
+  id('theme').addEventListener('change',render);
+  id('download-readme').addEventListener('click',()=>{
+    const config=ready();if(!config) return;
+    download(new Blob([markdown(config)],{type:'text/markdown;charset=utf-8'}),'README.md');
+    notice('download-notice','正文已准备下载。将 README.md 放在你的同名仓库根目录。');
+  });
+  id('download-banner').addEventListener('click',()=>{
+    if(!ready()) return;
+    canvas.toBlob(blob=>{
+      if(!blob) {notice('download-notice','横幅导出失败，请重试或换用新版浏览器。',true);return;}
+      download(blob,'banner.png');notice('download-notice','横幅已准备下载。请将 banner.png 放进仓库的 assets 文件夹。');
+    },'image/png');
+  });
+  id('save-config').addEventListener('click',()=>{
+    const config=ready();if(!config) return;
+    download(new Blob([JSON.stringify(config,null,2)+'\n'],{type:'application/json;charset=utf-8'}),'profile.json');
+    notice('form-notice','填写内容已准备下载，下次可用“导入填写内容”继续。');
+  });
+  id('import-config').addEventListener('change',async event=>{
+    const input=event.target;const file=input.files?.[0];if(!file) return;
+    try {
+      if(file.size>128*1024) throw new Error('配置文件太大，请使用小于 128 KB 的 JSON 文件。');
+      const config=JSON.parse(await file.text());const errors=validate(config);
+      if(errors.length) throw new Error(errors[0].message);
+      setConfig(config);render();notice('download-notice','');notice('form-notice','已导入填写内容。');
+    } catch(error) {
+      notice('form-notice',error instanceof SyntaxError ? '无法读取 JSON 格式，原有填写内容已保留。' : '导入失败：'+error.message+' 原有填写内容已保留。',true);
+    } finally {input.value='';}
+  });
+  id('reset').addEventListener('click',()=>{
+    setConfig(clone(defaults));render();notice('download-notice','');notice('form-notice','已恢复通用示例，请替换成你自己的信息。');
+  });
+  window.PixelWorkshop={getConfig,render,markdown,defaults:clone(defaults),validate};
+  setConfig(clone(defaults));render();
+})();
+</script>
+</body>
+</html>

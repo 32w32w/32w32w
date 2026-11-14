@@ -19,3 +19,5 @@
 - **留下方法**：把可复用的步骤整理好，方便下一次创作。
 
 <sub>配套技能的来源与使用说明，见 my-skills 仓库。</sub>
+
+<sub>喜欢这个风格？[使用像素小工坊模板](https://github.com/32w32w/32w32w/tree/main/template/pixel-workshop)，换成自己的昵称、介绍和项目。</sub>
