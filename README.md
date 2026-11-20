@@ -2,15 +2,18 @@
 
 你好，我是 **32w32w**。
 
-我在整理可复用的视觉设计方法，把参考图分析、设计判断和风格协调写成能反复使用的技能。
+我在整理可复用的视觉设计和绘画方法，把参考图分析、设计判断、画法和风格协调写成能反复使用的技能。
 
 ## 正在做的小工具
 
 ### [my-skills](https://github.com/32w32w/my-skills)
 
-个人可复用技能集合。包含我独立编写的 **Visual Art Director**，以及配套视觉设计技能的安装入口。
+个人可复用技能集合，收录我写的视觉设计和绘画技能，也提供配套视觉设计技能的安装入口。
 
-[阅读主技能](https://github.com/32w32w/my-skills/blob/main/skills/visual-art-director/SKILL.md) · [查看安装说明](https://github.com/32w32w/my-skills#整套安装到-codex)
+- [**Visual Art Director**](https://github.com/32w32w/my-skills/blob/main/skills/visual-art-director/SKILL.md) 用于参考图分析、设计评价和风格协调。
+- [**Painting Styles and Techniques**](https://github.com/32w32w/my-skills/blob/main/skills/painting-styles-and-techniques/SKILL.md) 用于查找馆藏原作、比较画法、构思新作品和评审画稿。
+
+[查看安装说明](https://github.com/32w32w/my-skills#整套安装到-codex)
 
 ## 从参考到作品
 
