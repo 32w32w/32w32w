@@ -2,14 +2,6 @@
 
 你好，我是 **32w32w**，欢迎来我的像素小工坊。我和 AI 一起画画、做设计，也把改稿时反复用得上的办法写成小工具，放在这里分享。
 
-## 工坊手记 ·《闭馆以后》
-
-美术馆关门以后，挂在隔壁的两幅画会串门吗？
-
-我让《最后的晚餐》里的一只奶蛙把圆面包递出画框。隔壁《雅典学院》的几何老师探过身来，拿圆规在面包上比了比，一脚点在正中，另一脚刚好碰到外皮。
-
-我想让人第一眼只看到月光下安静的展厅，再看一眼，才发现几何老师还没下课。[读《闭馆以后》的构思稿](https://github.com/32w32w/my-skills/blob/main/skills/painting-styles-and-techniques/examples/after-hours.md)
-
 ## 正在做的小工具
 
 ### [my-skills](https://github.com/32w32w/my-skills)
@@ -22,5 +14,15 @@
 [查看安装说明](https://github.com/32w32w/my-skills#整套安装到-codex)
 
 <sub>配套技能的来源与使用说明，见 my-skills 仓库。</sub>
+
+## 工坊手记 ·《闭馆以后》
+
+美术馆关门以后，挂在隔壁的两幅画会串门吗？
+
+[![《闭馆以后》完成稿。月光照进展厅，一只奶蛙从左画框递出圆面包，右画框里的几何老师伸出圆规。](assets/artworks/after-hours.png)](https://raw.githubusercontent.com/32w32w/32w32w/main/assets/artworks/after-hours.png)
+
+我让《最后的晚餐》里的一只奶蛙把圆面包递出画框。隔壁《雅典学院》的几何老师探过身来，拿圆规在面包上比了比，一脚点在正中，另一脚刚好碰到外皮。
+
+我想让人第一眼只看到月光下安静的展厅，再看一眼，才发现几何老师还没下课。[读《闭馆以后》的构思稿](https://github.com/32w32w/my-skills/blob/main/skills/painting-styles-and-techniques/examples/after-hours.md)
 
 <sub>喜欢这个风格？[使用像素小工坊模板](https://github.com/32w32w/32w32w/tree/main/template/pixel-workshop)，换成自己的昵称、介绍和项目。</sub>
